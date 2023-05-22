@@ -1,0 +1,23 @@
+** PLEASE NOTE THIS PROJECT CAN ONLY RUN ON PHP VERSION 8.0.25 OR EARLIER
+** RUNNING THIS PROJECT ON A PHP VERSION ABOVE 8.0.25 WILL NOT WORK.
+
+Create new database on phpmyadmin with name: ideadb
+Import ideadb.sql file in the database you have just created
+
+Admin Login Details
+Email	: admin@mail.com
+Password: Password@123
+
+User(staff) Login Details
+Username: test@email.com
+Password: 1234tu
+
+On Attachment files Users can only upload files of type:
+jpg, png, jpeg, pdf, docx
+
+Creating new user account 
++ Register a new user account
++ Login as admin and activate user account
++ Login as user
+
+
