@@ -24,12 +24,10 @@ class Auth extends CI_Controller {
             $this->load->view('auth/login', $data);
             $this->load->view('templates/auth_footer');
         } else {
-            // validasi sukses
             $this->_login();
         }
     }
 
-    // valid login sukses
     private function _login()
     {
         $email = $this->input->post('email');
@@ -37,44 +35,40 @@ class Auth extends CI_Controller {
 
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-        // jika user ada
         if ($user) {
-            // jika user nya aktif
+            // is user active
             if ($user['is_active'] == 1) {
-                // cek passwordnya
+                // check password
                 if (password_verify($password, $user['password'])) {
                     $data = [
                         'email' => $user['email'],
                         'role_id' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
-                    // cek role
+                    // check role
                     if ($user['role_id'] == 1) {
                         redirect('admin');
                     } else {
                         redirect('user');
                     }
                 }else{
-                    // jika gagal
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Wrong Password!</div>');
                     redirect('auth');
                 }
             } else {
-                // tidak aktif
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                 This email has not been activated yet!</div>');
                 redirect('auth');
             }   
         } else {
-            // tidak ada user dengan email itu
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
             Email is not registered!</div>');
             redirect('auth');
         }
     }
 
-    // registrasi
+    // registration
     public function registration()
     {
         if ($this->session->userdata('email')) {
@@ -124,7 +118,7 @@ class Auth extends CI_Controller {
             $this->db->insert('user', $data);
             $this->db->insert('user_token', $user_token);
 
-            // $this->_sendemail($token, 'verify');
+            $this->_sendemail($token, 'verify');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Your account has been created successfully. Please check your email to activate your account!</div>');
@@ -176,14 +170,10 @@ class Auth extends CI_Controller {
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
         if ($user) {
-            // jika email benar
             $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
 
             if ($user_token) {
-                // jika token benar
-
                 if (time() - $user_token['date_created'] < (60*60*24)) {
-                    // token belum expired
                     $this->db->set('is_active', 1);
                     $this->db->where('email', $email);
                     $this->db->update('user');
@@ -203,14 +193,12 @@ class Auth extends CI_Controller {
                 }
 
             } else {
-                // token salah
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                 Account activation failed! Invalid token.</div>');
                 redirect('auth');
             }
 
         } else {
-            // email salah
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
             Account activation failed! Email does not exist.</div>');
             redirect('auth');
@@ -252,7 +240,6 @@ class Auth extends CI_Controller {
             $user = $this->db->get_where('user', ['email' => $email, 'is_active' => 1])->row_array();
 
             if ($user) {
-                // jika ada user buat token
                 $token = base64_encode(random_bytes(32));
                 $user_token = [
                     'email' => $email,
@@ -267,7 +254,6 @@ class Auth extends CI_Controller {
                 Please check your email to reset your password!</div>');
                 redirect('auth/forgotpassword');
             } else {
-                // email tidak terdaftar
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                 Email is not registered or not yet activated!</div>');
                 redirect('auth/forgotpassword');
@@ -284,22 +270,18 @@ class Auth extends CI_Controller {
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
         if ($user) {
-            // jika ada email
             $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
             
             if ($user_token) {
-                // jika token valid
                 $this->session->set_userdata('reset_email', $email);
                 $this->changepassword();
             } else {
-                // jika token tidak valid
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                 Reset password failed! Invalid token</div>');
                 redirect('auth');
             }
 
         } else {
-            // jika email tidak ada
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
             Reset password failed! Email is not registered</div>');
             redirect('auth');

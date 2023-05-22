@@ -19,7 +19,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="department">Department</label>
-                                <select class="form-control" id="department" name="department" required>
+                                <select class="form-control" id="department" name="department">
                                     <option value="Accounts">Accounts</option>
                                     <option value="Human Resource">Human Resource</option>
                                     <option value="IT">IT</option>
@@ -28,8 +28,7 @@
                                     <option value="Examinations">Examinations</option>
                                     <option value="Student Welfare">Student Welfare</option>
                                 </select>
-                        </div>
-                                            
+                        </div>                    
                     </div>
                 </div>
                 <div class="form-group">
@@ -40,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Idea Description*</label>
-                    <textarea class="form-control" id="description" name="description" placeholder="Idea Description" rows="3" required></textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="Idea Description" required rows="3"></textarea>
                     <?= form_error('description', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
@@ -66,8 +65,30 @@
                         <?php echo form_error('file') ?>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="form-check">
+                    <script>
+                        function toggleButton() {
+                            var checkbox = document.getElementById("myCheckbox");
+                            var button = document.getElementById("myButton");
+
+                            if (checkbox.checked) {
+                                button.disabled = false; // Activate the button
+                            } else {
+                                button.disabled = true; // Deactivate the button
+                            }
+                        }
+                    </script>
+                        <input class="form-check-input" type="checkbox" id="myCheckbox" onchange="toggleButton()">
+                        <label class="form-check-label" for="t&c">
+                            Accept Terms and Conditions 
+                        </label>
+                        <br/>
+                        <a  target="_blank" href="../assets/t&c.txt">Read</a>
+                    </div>
+                </div>
                 <!-- button save -->
-                <input class="btn btn-success" type="submit" name="btn" value="Post" />
+                <input class="btn btn-success" type="submit" name="btn" value="Post" id="myButton" disabled />
             </form>
         </div>
 

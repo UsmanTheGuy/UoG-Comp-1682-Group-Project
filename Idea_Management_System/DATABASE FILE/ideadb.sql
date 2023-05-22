@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2023 at 06:25 PM
+-- Generation Time: May 21, 2023 at 09:21 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -101,7 +101,6 @@ CREATE TABLE `user_idea` (
 --
 
 INSERT INTO `user_idea` (`id`, `name`, `department`, `title`, `description`, `category`, `date_posted`, `file`) VALUES
-('5f57a6d18c382', 'Marvin D. Behrens', 'Little Ivywood', 'Flood', 'Several residential areas were affected by the flood', 'Natural Disaster', 1646499899, '5f57a6d18c382.jpeg'),
 ('5f57a769d43b0', 'Tiffany O. Errico', 'Aucteraden', 'Need Education Help', 'Some children are still not getting a decent education.', 'Education', 1648405450, '5f57a769d43b0.jpg'),
 ('6270af1bdf852', 'Christine Moore', 'as', 'Demo', 'Demo demo demo', 'Corona Virus', 1651552027, '6270af1bdf852.png');
 

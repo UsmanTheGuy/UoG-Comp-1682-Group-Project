@@ -18,9 +18,6 @@ class Idea_model extends CI_Model {
         $post = $this->input->post();
         $this->id               = uniqid();
         $this->name             = $post['name'];
-        // $this->nik              = $post['nik'];
-        // $this->rt               = $post['rt'];
-        // $this->rw               = $post['rw'];
         $this->department          = $post['department'];
         $this->title            = $post['title'];
         $this->description      = $post['description'];

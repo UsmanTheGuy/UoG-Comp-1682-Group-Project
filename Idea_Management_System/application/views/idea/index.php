@@ -15,7 +15,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"> Posted Ideas </h6>
+            <h6 class="m-0 font-weight-bold text-primary">Idea Data</h6>
         </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -42,8 +42,15 @@
                                 <td><?= $r['category']; ?></td>
                                 <td><?= date('d F Y' , $r['date_posted']); ?></td>
                                 <td>
-                                    <a class="fas fa-eye badge badge-primary" style="font-size:14px;" href="<?= site_url('idea/detail/'.$r['id']); ?>"> View </a>
-                                    <a class="fas fa-trash badge badge-danger" style="font-size:14px;" href="#!" onclick="deleteConfirm('<?= site_url('idea/deleteidea/'.$r['id']); ?>')"> Delete</a>
+                                    <a class="fas fa-eye badge badge-primary" style="font-size:14px;" href="<?= site_url('idea/detail/'.$r['id']); ?>">Detail</a>
+                                    <?php
+                                            if ($user['role_id'] == 2) {
+                                                echo '';
+                                            } else {
+                                                echo '<a class="fas fa-trash badge badge-danger" style="font-size:14px;" href="#!" onclick="deleteConfirm(\''.site_url("idea/deleteidea/".$r["id"]).'\')">Delete</a>';
+                                            }
+                                        ?>
+
                                 </td>
                             </tr>
                         <?php $index++; ?>
@@ -58,7 +65,6 @@
 
 </div>
 <!-- End of Main Content -->
-
 
 <!-- modal delete -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -78,4 +84,3 @@
     </div>
   </div>
 </div>
-
