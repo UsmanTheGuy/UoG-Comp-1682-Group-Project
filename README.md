@@ -10,7 +10,7 @@
 
   
 
- This is and Ideas Management System for a UoG Comp1682 Group Project <br /> It Responsive for all devices.
+ This is an Idea Management System build for a UoG Comp1682 Group Project <br /> It Responsive for all devices.
 
 </div>
 
