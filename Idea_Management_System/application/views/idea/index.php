@@ -42,9 +42,6 @@
                                 <td><?= $r['category']; ?></td>
                                 <td><?= date('d F Y' , $r['date_posted']); ?></td>
                                 <td>
-                                    <a class="fas fa-thumbs-up badge badge-primary" style="font-size:14px;" href="#"> Like </a>
-                                    <a class="fas fa-thumbs-down badge badge-danger" style="font-size:14px;" href="#"> Dislike </a>
-                                    <a class="fas fa-comments badge badge-success" style="font-size:14px;" href="#"> Comment </a>
                                     <a class="fas fa-eye badge badge-primary" style="font-size:14px;" href="<?= site_url('idea/detail/'.$r['id']); ?>"> View </a>
                                     <a class="fas fa-trash badge badge-danger" style="font-size:14px;" href="#!" onclick="deleteConfirm('<?= site_url('idea/deleteidea/'.$r['id']); ?>')"> Delete</a>
                                 </td>
